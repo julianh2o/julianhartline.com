@@ -1,0 +1,58 @@
+---
+layout: page
+title:  "Rope"
+thumbnail: /resources/images/rope.png
+categories: projects
+tag: archive
+---
+
+Click anywhere on the rope to drag it. Press the space bar to toggle<br>
+fixed end mode (the other end stays in one place or moves around). Use the left and right<br>
+arrow keys to navigate the menu and use the up and down arrows to change the variables.<br>
+<br>
+<a href=/resources/projects/Rope/Rope.java>Rope.java</a> - Source code<br>
+<a href='/resources/projects/appletviewer.php?title=Rope&codebase=/resources/projects/Rope&class=Rope.class&width=1000&height=700' onClick='window.open("/resources/projects/appletviewer.php?title=Rope&codebase=/resources/projects/Rope&class=Rope.class&width=1000&height=700","Rope","menubar=no,width=1000,height=700,toolbar=no");return false;'>Launch Rope in a new window</a><br>
+<br>
+<h3>Keys:</h3>Toggle fixed end mode(Space)<br>
+Toggle Gravity(g)<br>
+Quick Dampen(d)<br>
+<h4>Toggle modes:</h4>Normal(n)<br>
+Slinky(s)<br>
+Lines(l)<br>
+Thick(t)<br>
+Dynamic Coloring(c)<br>
+<h4>Time:</h4>Toggle Slow(o)<br>
+Freeze frame(p)<br>
+Freeze mode: Forward 1 frame(+)<br>
+Freeze mode: Forward 10 frames(enter)<br>
+<br>
+<h3>Things to try:</h3><h4>Standing wave:</h4>Grab the middle of the rope fairly close to a fixed end, stretch it out, and move your mouse up and<br>
+down until the wave looks like it is staying in one place. First try to get the middle<br>
+of the rope to oscillate like a jump rope, then try to get multiple peaks with nodes inbetween<br>
+that stay in one place.<br>
+<h4>Wave reflection:</h4><br>
+In fixed end mode (works best without gravity): Position the rope so that it makes pretty close<br>
+to horizontal line across the area. Grab one end and make a wave by quickly jerking the end up<br>
+and then down. The wave will continue across the rope and be reflected at the other end.<br>
+(This works best if you change the damping to about .80)<br>
+In loose end mode (you need gravity for this one): Let the rope fall while holding on to the<br>
+fixed end. Like in fixed end mode, send a wave down the rope by dragging it out to the side and<br>
+back. (This works best with damping as above and a reduced gravity.)<br>
+<h4>Constructive Interference:</h4><br>
+Setting up as above in fixed end mode, create a wave on one end and quickly create another on<br>
+the other end. Where they meet in the middle, a larger wave will be formed momentarily. This also<br>
+works if you grab the rope in the middle and make a wave going in both directions letting go as they<br>
+come back to the center. (Works best with increased mass as it slows down the rope's reaction)<br>
+<h4>Compression waves:</h4><br>
+This works best without gravity. In slinkey mode(s) with dynamic coloring(c) on, Stretch the slinkey<br>
+out and wait until it stops moving. (or use (d) to quick damp) After it has stopped moving, drag the<br>
+end of the slinkey toward and away from the other end compressing it.<br>
+<br>
+<a href=/resources/projects/Rope/Rope.java>Rope.java</a> - Source code<br>
+<a href='/resources/projects/appletviewer.php?title=Rope&codebase=/resources/projects/Rope&class=Rope.class&width=1000&height=700' onClick='window.open("/resources/projects/appletviewer.php?title=Rope&codebase=/resources/projects/Rope&class=Rope.class&width=1000&height=700","Rope","menubar=no,width=1000,height=700,toolbar=no");return false;'>Launch Rope in a new window</a><br>
+<br>
+<a href=/resources/projects/Rope/Screenshots/ss1.png><img class=bordered width=500 src=/resources/projects/Rope/Screenshots/ss1.png></a>
+<a href=/resources/projects/Rope/Screenshots/ss2.png><img class=bordered width=500 src=/resources/projects/Rope/Screenshots/ss2.png></a>
+<a href=/resources/projects/Rope/Screenshots/ss3.png><img class=bordered width=500 src=/resources/projects/Rope/Screenshots/ss3.png></a>
+<a href=/resources/projects/Rope/Screenshots/ss4.png><img class=bordered width=500 src=/resources/projects/Rope/Screenshots/ss4.png></a>
+<a href=/resources/projects/Rope/Screenshots/ss5.png><img class=bordered width=500 src=/resources/projects/Rope/Screenshots/ss5.png></a>

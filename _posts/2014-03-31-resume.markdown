@@ -1,0 +1,8 @@
+---
+layout: page
+title:  "Resume"
+thumbnail: /resources/images/resume.png
+link: /resources/julianhartline.pdf
+categories: me
+tag: current
+---

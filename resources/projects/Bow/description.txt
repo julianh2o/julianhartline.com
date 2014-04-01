@@ -1,0 +1,17 @@
+Click and drag from within the green zones to launch arrows.
+Headshots award bonus points. Use cash to buy upgrades and
+ammo from the store. Multi-shots and volleys can be used for greater firepower at the cost of arrows!<br>
+
+space - multishot
+z - volley
+p - pause
+/ - store
+
+<link>Bow.java|Source code
+<java>Bow|Bow.class|1000|700|Launch Bow in a new window
+
+<image>Screenshots/ss1.png|500
+<image>Screenshots/ss2.png|500
+<image>Screenshots/ss3.png|500
+<image>Screenshots/ss4.png|500
+<image>Screenshots/ss5.png|500

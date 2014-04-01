@@ -1,0 +1,24 @@
+---
+layout: page
+title:  "Gravity"
+thumbnail: /resources/images/gravity.png
+categories: projects
+tag: archive
+---
+
+Written in C++ using SDL and OpenGL, Gravity is space combat game in which the player equips
+their craft with various parts and weaponry and pilots it in combat against other ships.
+
+Gravity is in a quite juvenile stage, although the basic engine and equipment selection is there, the game currently has no attainable objective.
+
+<a href=/resources/projects/Gravity/GravityMac.zip>GravityMac.zip</a> - MacOS X executable<br>
+<a href=/resources/projects/Gravity/GravitySource.zip>GravitySource.zip</a> - Source files and linux x64 executable<br>
+<a href=/resources/projects/Gravity/ReadMe.txt>ReadMe.txt</a> - Read Me File<br>
+<br>
+<a href=/resources/projects/Gravity/Screenshots/ss1.png><img class=bordered width=500 src=/resources/projects/Gravity/Screenshots/ss1.png></a>
+<a href=/resources/projects/Gravity/Screenshots/ss2.png><img class=bordered width=500 src=/resources/projects/Gravity/Screenshots/ss2.png></a>
+<a href=/resources/projects/Gravity/Screenshots/ss3.png><img class=bordered width=500 src=/resources/projects/Gravity/Screenshots/ss3.png></a>
+<a href=/resources/projects/Gravity/Screenshots/ss4.png><img class=bordered width=500 src=/resources/projects/Gravity/Screenshots/ss4.png></a>
+<a href=/resources/projects/Gravity/Screenshots/ss5.png><img class=bordered width=500 src=/resources/projects/Gravity/Screenshots/ss5.png></a>
+<a href=/resources/projects/Gravity/Screenshots/ss6.png><img class=bordered width=500 src=/resources/projects/Gravity/Screenshots/ss6.png></a>
+<br>

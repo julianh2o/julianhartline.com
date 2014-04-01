@@ -1,0 +1,25 @@
+---
+layout: page
+title:  "Bow"
+thumbnail: /resources/images/bow.png
+categories: projects
+tag: archive
+---
+
+Click and drag from within the green zones to launch arrows.<br>
+Headshots award bonus points. Use cash to buy upgrades and<br>
+ammo from the store. Multi-shots and volleys can be used for greater firepower at the cost of arrows!<br><br>
+<br>
+space - multishot<br>
+z - volley<br>
+p - pause<br>
+/ - store<br>
+<br>
+<a href=/resources/projects/Bow/Bow.java>Bow.java</a> - Source code<br>
+<a href='/resources/projects/appletviewer.php?title=Bow&codebase=/resources/projects/Bow&class=Bow.class&width=1000&height=700' onClick='window.open("/resources/projects/appletviewer.php?title=Bow&codebase=/resources/projects/Bow&class=Bow.class&width=1000&height=700","Bow","menubar=no,width=1000,height=700,toolbar=no");return false;'>Launch Bow in a new window</a><br>
+<br>
+<a href=/resources/projects/Bow/Screenshots/ss1.png><img class=bordered width=500 src=/resources/projects/Bow/Screenshots/ss1.png></a>
+<a href=/resources/projects/Bow/Screenshots/ss2.png><img class=bordered width=500 src=/resources/projects/Bow/Screenshots/ss2.png></a>
+<a href=/resources/projects/Bow/Screenshots/ss3.png><img class=bordered width=500 src=/resources/projects/Bow/Screenshots/ss3.png></a>
+<a href=/resources/projects/Bow/Screenshots/ss4.png><img class=bordered width=500 src=/resources/projects/Bow/Screenshots/ss4.png></a>
+<a href=/resources/projects/Bow/Screenshots/ss5.png><img class=bordered width=500 src=/resources/projects/Bow/Screenshots/ss5.png></a>

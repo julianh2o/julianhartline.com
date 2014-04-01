@@ -1,0 +1,49 @@
+---
+layout: default
+title: Julian Hartline
+---
+
+<h2>Current</h2>
+<ul class="post-panels">
+    {% for post in site.posts %}
+		{% if post.layout == 'page' %}
+		{% if post.tag == 'current' %}
+			<li>
+				{% if post.link  %}
+					<a href="{{ post.link }}">
+						<img src="{{ post.thumbnail }}" />
+					</a>
+				{% else %}
+					<a href="{{ post.url }}">
+						<img src="{{ post.thumbnail }}" />
+					</a>
+				{% endif %}
+				<span class="image-title">{{ post.title }}</span>
+			</li>
+		{% endif %}
+		{% endif %}
+	{% endfor %}
+</ul>
+
+
+<h2>Past Projects</h2>
+<ul class="post-panels">
+    {% for post in site.posts %}
+		{% if post.layout == 'page' %}
+		{% if post.tag == 'archive' %}
+			<li>
+				{% if post.link  %}
+					<a href="{{ post.link }}">
+						<img src="{{ post.thumbnail }}" />
+					</a>
+				{% else %}
+					<a href="{{ post.url }}">
+						<img src="{{ post.thumbnail }}" />
+					</a>
+				{% endif %}
+				<span class="image-title">{{ post.title }}</span>
+			</li>
+		{% endif %}
+		{% endif %}
+	{% endfor %}
+</ul>

@@ -1,0 +1,16 @@
+---
+layout: page
+title:  "Podbase"
+thumbnail: /resources/images/podbase.png
+categories: projects
+tag: current
+---
+
+Podbase is an image database specially tailored for scientific images.
+
+<!--more-->
+
+Written in Java using the Play framework, Podbase is specifically designed to make annotating and browsing through images convenient for researches.
+
+Podbase is currently running under the supervision of the Lenz Lab at University of Hawaii at Manoa and can be found at [podbase.net](http://podbase.net)
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Millbrae Manor Hottub Control</title>
+		<!-- <link rel="apple-touch-icon" sizes="114x114" href="millbraemanor.png" /> -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" />
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="boostrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+		<style type="text/css">
+			.inner {
+				padding: 7px;
+			}
+			.status {
+				padding: 3px;
+				border-radius: 3px;
+				display: inline-block;
+				width: 100px;
+				text-align: center;
+				background-color: grey;
+				color: white;
+			}
+
+			.status.on {
+				background-color: green;
+				color: white;
+			}
+
+			@media (max-width: 480px) {
+				#toggle {
+					width: 100%;
+					height: 50px;
+					font-size: 110%;
+				}
+			}
+		</style>
+    </head>
+ 
+    <body>
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="inner">
+					<div class="inner">
+						Hot Tub Status: <span class="status">Unknown</span>
+					</div>
+
+					<div class="inner">
+						<button class="btn btn-primary" id="toggle">Toggle Hottub</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- JAVASCRIPT -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+ 
+        <script type="text/javascript">
+			function trim(str) {
+				return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+			}
+
+            $(document).ready(function() {
+                //var postURL = "https://api.electricimp.com/v1/faf588ac64572de4/3065a9d1d0015018";
+                var postURL = "https://agent.electricimp.com/W1o-kGMItwZR";
+                $("#toggle").click(function() {
+                    $.post(postURL,prompt("Enter the code!"));
+                });
+
+				function updateStatus() {
+					$.get("./status.txt").success(function(data) {
+						if (trim(data) === "led on") {
+							$(".status").toggleClass("on",true).text("ON");
+						} else {
+							$(".status").toggleClass("on",false).text("OFF");
+						}
+					});
+				}
+
+				setInterval(updateStatus,1000);
+				updateStatus();
+            });
+ 
+        </script>
+    </body>
+</html>

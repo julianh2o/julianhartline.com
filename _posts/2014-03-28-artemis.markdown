@@ -1,0 +1,12 @@
+---
+layout: page
+title:  "Artemis"
+thumbnail: /resources/images/artemis.jpg
+categories: projects
+tag: archive
+---
+
+Artemis is my highschool website. Preserved here for nostalgia and because it is still home to a number of
+projects that kept me busy through high-school and may still hold interest or value today.
+
+You can find Artemis at [artemis.julianhartline.com](http://artemis.julianhartline.com)

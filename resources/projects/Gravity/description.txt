@@ -1,0 +1,16 @@
+Written in C++ using SDL and OpenGL, Gravity is space combat game in which the player equips their craft with various parts and weaponry and pilots it in combat against other ships.
+
+Gravity is in a quite juvenile stage, although the basic engine and equipment selection is there, the game currently has no attainable objective.
+
+<link>GravityMac.zip|MacOS X executable
+<link>GravitySource.zip|Source files and linux x64 executable
+#<link>GravityWin.zip|Windows executable
+<link>ReadMe.txt|Read Me File
+
+<image>Screenshots/ss1.png|500
+<image>Screenshots/ss2.png|500
+<image>Screenshots/ss3.png|500
+<image>Screenshots/ss4.png|500
+<image>Screenshots/ss5.png|500
+<image>Screenshots/ss6.png|500
+

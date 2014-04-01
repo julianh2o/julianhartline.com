@@ -1,0 +1,15 @@
+Squirrel is a simple platform hopping game. Your character is a blue square and your objective is to reach a green goal box, located somewhere in the level.
+Your character can climb some walls and jump off others.
+Squirrel has a built in level editor and currently runs in developer mode all the time. Switching to edit mode is possible at any point.
+
+<link>Squirrel.zip|Squirrel executable for MacOS X
+<link>ReadMe.txt|ReadMe file
+
+<image>Screenshots/ss1.png|500
+<image>Screenshots/ss2.png|500
+<image>Screenshots/ss3.png|500
+<image>Screenshots/ss4.png|500
+<image>Screenshots/ss5.png|500
+<image>Screenshots/ss6.png|500
+<image>Screenshots/ss7.png|500
+<image>Screenshots/ss8.png|500

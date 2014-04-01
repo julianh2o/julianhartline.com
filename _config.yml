@@ -1,0 +1,10 @@
+name: julianhartline.com
+owner: Julian Hartline
+email: julianh2o@gmail.com
+titletagline: Code, circuits, and commentary
+tagline: Programmings, tinkerings, and musings to stave off idleness.
+github: julianh2o
+exclude: [tasks]
+markdown: redcarpet
+pygments: true
+permalink: none

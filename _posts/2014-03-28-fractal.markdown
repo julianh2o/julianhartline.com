@@ -1,0 +1,72 @@
+---
+layout: page
+title:  "Fractal"
+thumbnail: /resources/images/fractal.png
+categories: projects
+tag: archive
+---
+
+Fractal is a relatively simple branch iterating fractal generation program. At each node, a number of branches are generated which continue to recursively generate each fractal.<br>
+A number of premade fractals are available for viewing using the dropdown box at the top.<br>
+<br>
+<a href='/resources/projects/Fractal/fractalviewer.php' onClick='window.open("/resources/projects/Fractal/fractalviewer.php","Fractal","menubar=no,width=1050,height=625,toolbar=no");return false;'>Fractal</a> - Open Fractal in a new window<br>
+<a href='/resources/projects/Fractal/fractalviewer.php?mac' onClick='window.open("/resources/projects/Fractal/fractalviewer.php?mac","Fractal (Mac version)","menubar=no,width=1050,height=625,toolbar=no");return false;'>Fractal (Mac version)</a> - Mac version doesn't support gif export due to old jvm.<br>
+<br>
+<h2>Instructions</h2>Use the input boxes to change the fractal variables.<br>
+Click and drag in the fractal area to move fractal around.<br>
+Press return while in a box to redraw fractal<br>
+This program starts by drawing a number of inital<br>
+branches out of the center node. From each of these,<br>
+more branches are made using the settings and the<br>
+ending point of the previous branch. This continues for<br>
+each iteration. To save, enter a name for the fractal and click save<br>
+<br>
+Iterations: How many times the fractal branches.<br>
+Angle: Degrees between each branch<br>
+Length: The fraction of the previous length that<br>
+a segment has or how fast it shrinks.<br>
+Initial length: The length of the first segment.<br>
+Initial branches: The number of stems out of the<br>
+central node.<br>
+Branches: Number of branches off of each subsequent node.<br>
+Offset: Degree offset of each branch.<br>
+Rotation: Rotation in degrees of fractal. Include "d" at the<br>
+end for continuous rotation.<br>
+Delay: Animation speed.<br>
+Display: Changes appearance (see below)<br>
+The name box and the save button let you save a cool<br>
+fractal with a name for others to see.<br>
+The default fractal's values are in the save named "default"<br>
+<br>
+<h3>Animation</h3>To make a fractal animate a variable, you<br>
+must supply it with a range and a step.<br>
+Each field can be animated using this syntax in the parameter box: min~max;step.<br>
+For example, to animate a growing fractal by animating the iterations,<br>
+use 1~10;1 making the fractal loop from iteration 1 to iteration 10<br>
+and the speed of one iteration per loop.<br>
+<br>
+<h3>Display</h3> Keywords<br>
+"dot"-Places a dot on the end of the last branch<br>
+"branch"- Places a dot on each  node (except the middle node)<br>
+"dynamic"- Colors fractal based on iteration.<br>
+"norm"- Adding norm to "dot" or "branch" draws the lines as well<br>
+as the dots. (only useful with dot size greater than 1)<br>
+To change the dot size, put the desired size in angle braces. [] or {}<br>
+To draw dots of size 4 you might have "branch[4]" in the display parameter.<br>
+Using angle braces[] makes the points square, using curly braces{} makes them circular.<br>
+Fractal Color<br>
+The format for color is: (red,green,blue). These<br>
+values may be between 0 and 255.<br>
+<br>
+<b>New:</b> Create animated gifs out of your fractals using the "Make Gif" button! (beta!)<br>
+<br>
+<a href='/resources/projects/Fractal/fractalviewer.php' onClick='window.open("/resources/projects/Fractal/fractalviewer.php","Fractal","menubar=no,width=1050,height=625,toolbar=no");return false;'>Fractal</a> - Open Fractal in a new window<br>
+<br>
+<br>
+<a href=/resources/projects/Fractal/Screenshots/ss1.png><img class=bordered width=500 src=/resources/projects/Fractal/Screenshots/ss1.png></a>
+<a href=/resources/projects/Fractal/Screenshots/ss2.png><img class=bordered width=500 src=/resources/projects/Fractal/Screenshots/ss2.png></a>
+<a href=/resources/projects/Fractal/Screenshots/ss3.png><img class=bordered width=500 src=/resources/projects/Fractal/Screenshots/ss3.png></a>
+<a href=/resources/projects/Fractal/Screenshots/ss4.png><img class=bordered width=500 src=/resources/projects/Fractal/Screenshots/ss4.png></a>
+<a href=/resources/projects/Fractal/Screenshots/ss5.png><img class=bordered width=500 src=/resources/projects/Fractal/Screenshots/ss5.png></a>
+<a href=/resources/projects/Fractal/Screenshots/ss6.png><img class=bordered width=500 src=/resources/projects/Fractal/Screenshots/ss6.png></a>
+<a href=/resources/projects/Fractal/Screenshots/ss7.png><img class=bordered width=500 src=/resources/projects/Fractal/Screenshots/ss7.png></a>

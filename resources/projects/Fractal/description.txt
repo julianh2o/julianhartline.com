@@ -1,0 +1,65 @@
+Fractal is a relatively simple branch iterating fractal generation program. At each node, a number of branches are generated which continue to recursively generate each fractal.
+A number of premade fractals are available for viewing using the dropdown box at the top.
+
+<popup>fractalviewer.php|Fractal|1050|625|Open Fractal in a new window
+<popup>fractalviewer.php?mac|Fractal (Mac version)|1050|625|Mac version doesn't support gif export due to old jvm.
+
+<h2>Instructions</h2>Use the input boxes to change the fractal variables.
+Click and drag in the fractal area to move fractal around.
+Press return while in a box to redraw fractal
+This program starts by drawing a number of inital
+branches out of the center node. From each of these,
+more branches are made using the settings and the
+ending point of the previous branch. This continues for
+each iteration. To save, enter a name for the fractal and click save
+
+Iterations: How many times the fractal branches.
+Angle: Degrees between each branch
+Length: The fraction of the previous length that 
+a segment has or how fast it shrinks.
+Initial length: The length of the first segment.
+Initial branches: The number of stems out of the 
+central node.
+Branches: Number of branches off of each subsequent node.
+Offset: Degree offset of each branch.
+Rotation: Rotation in degrees of fractal. Include "d" at the
+end for continuous rotation.
+Delay: Animation speed.
+Display: Changes appearance (see below)
+The name box and the save button let you save a cool
+fractal with a name for others to see.
+The default fractal's values are in the save named "default"
+
+<h3>Animation</h3>To make a fractal animate a variable, you
+must supply it with a range and a step. 
+Each field can be animated using this syntax in the parameter box: min~max;step.
+For example, to animate a growing fractal by animating the iterations,
+use 1~10;1 making the fractal loop from iteration 1 to iteration 10
+and the speed of one iteration per loop. 
+
+<h3>Display</h3> Keywords
+"dot"-Places a dot on the end of the last branch
+"branch"- Places a dot on each  node (except the middle node)
+"dynamic"- Colors fractal based on iteration.
+"norm"- Adding norm to "dot" or "branch" draws the lines as well
+as the dots. (only useful with dot size greater than 1)
+To change the dot size, put the desired size in angle braces. [] or {}
+To draw dots of size 4 you might have "branch[4]" in the display parameter.
+Using angle braces[] makes the points square, using curly braces{} makes them circular.
+Fractal Color
+The format for color is: (red,green,blue). These
+values may be between 0 and 255.
+
+<b>New:</b> Create animated gifs out of your fractals using the "Make Gif" button! (beta!)
+
+<popup>fractalviewer.php|Fractal|1050|625|Open Fractal in a new window
+
+
+<image>Screenshots/ss1.png|500
+<image>Screenshots/ss2.png|500
+<image>Screenshots/ss3.png|500
+<image>Screenshots/ss4.png|500
+<image>Screenshots/ss5.png|500
+<image>Screenshots/ss6.png|500
+<image>Screenshots/ss7.png|500
+

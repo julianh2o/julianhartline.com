@@ -1,0 +1,23 @@
+---
+layout: page
+title:  "Squirrel"
+thumbnail: /resources/images/squirrel.png
+categories: projects
+tag: archive
+---
+
+Squirrel is a simple platform hopping game. Your character is a blue square and your objective is to reach a green goal box, located somewhere in the level.<br>
+Your character can climb some walls and jump off others.<br>
+Squirrel has a built in level editor and currently runs in developer mode all the time. Switching to edit mode is possible at any point.<br>
+
+<a href=/resources/projects/Squirrel/Squirrel.zip>Squirrel.zip</a> - Squirrel executable for MacOS X<br>
+<a href=/resources/projects/Squirrel/ReadMe.txt>ReadMe.txt</a> - ReadMe file<br>
+
+<a href=/resources/projects/Squirrel/Screenshots/ss1.png><img class=bordered width=500 src=/resources/projects/Squirrel/Screenshots/ss1.png></a>
+<a href=/resources/projects/Squirrel/Screenshots/ss2.png><img class=bordered width=500 src=/resources/projects/Squirrel/Screenshots/ss2.png></a>
+<a href=/resources/projects/Squirrel/Screenshots/ss3.png><img class=bordered width=500 src=/resources/projects/Squirrel/Screenshots/ss3.png></a>
+<a href=/resources/projects/Squirrel/Screenshots/ss4.png><img class=bordered width=500 src=/resources/projects/Squirrel/Screenshots/ss4.png></a>
+<a href=/resources/projects/Squirrel/Screenshots/ss5.png><img class=bordered width=500 src=/resources/projects/Squirrel/Screenshots/ss5.png></a>
+<a href=/resources/projects/Squirrel/Screenshots/ss6.png><img class=bordered width=500 src=/resources/projects/Squirrel/Screenshots/ss6.png></a>
+<a href=/resources/projects/Squirrel/Screenshots/ss7.png><img class=bordered width=500 src=/resources/projects/Squirrel/Screenshots/ss7.png></a>
+<a href=/resources/projects/Squirrel/Screenshots/ss8.png><img class=bordered width=500 src=/resources/projects/Squirrel/Screenshots/ss8.png></a>

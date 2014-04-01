@@ -1,0 +1,8 @@
+---
+layout: page
+title:  "Blog"
+thumbnail: /resources/images/binary.png
+link: http://blog.julianhartline.com
+categories: me
+tag: current
+---
