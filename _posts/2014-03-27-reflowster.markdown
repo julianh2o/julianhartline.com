@@ -3,7 +3,7 @@ layout: page
 title:  "Reflowster"
 thumbnail: /resources/images/reflowster.jpg
 categories: projects
-tag: current
+tag: archive
 ---
 
 Reflowster is a self-contained controller that uses a standard toaster oven to perform accurate reflow soldering.
