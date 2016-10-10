@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-jekyll build && rsync -avz --delete _site/ julianh2o@julianhartline.com:~/julianhartline.com/
+jekyll build && rsync -avz _site/ julianh2o@julianhartline.com:~/julianhartline.com/
