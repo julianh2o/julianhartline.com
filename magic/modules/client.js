@@ -1,16 +1,24 @@
 import Util from "./util";
+import EventFactory from "./eventFactory";
+import Table from "./table";
+import FabricUtil from "./fabricUtil";
+import Card from "./Card";
+import CardCollection from "./CardCollection";
+
+var fabric = require('fabric').fabric;
+var fetch = require('node-fetch');
 
 $(document).ready(function() {
-    console.log("loaded index js",Util.guid());
+    var table = new Table(new fabric.Canvas("c"));
+    var host = window.document.location.host.replace(/:.*/, '');
+    var ws = new WebSocket('ws://' + host + ':8080');
+    window.table = table;
 
-    var canvas = new fabric.Canvas("c");
-    canvas.selection = false;
-
-    $.get("/state",function(data) {
-        canvas.loadFromJSON(data, function () {
-            canvas.renderAll();
-        });
+    $.get("/state").done(function(data) {
+        table.loadFromJSON(data);
     });
+
+    var canvas = table.canvas;
 
     $(window).resize(function() {
         canvas.setWidth(window.innerWidth);
@@ -19,34 +27,45 @@ $(document).ready(function() {
     $(window).resize();
 
     var panning = false;
-    canvas.on('mouse:up', function (e) {
+    canvas.on("mouse:up", function (e) {
         if (!panning) {
-            var obj = objectAt(canvas,e.e.clientX,e.e.clientY,e.target);
+            var obj = FabricUtil.objectAt(table.canvas,e.e.clientX,e.e.clientY,e.target);
             if (obj) {
                 if (obj.kind == "card") {
-                    var group = createCollection(canvas,[obj,e.target],"stack");
-                    console.log("created group",group.id);
+                    var group = table.createCollection([obj,e.target],"stack");
                 } else {
-                    console.log("adding to group",obj.id);
-                    addToCollection(canvas,obj,e.target);
+                    table.addToCollection(obj,e.target);
                 }
             }
         }
         panning = false;
     });
+ 
+    ws.onmessage = function (e) {
+        var e = JSON.parse(e.data);
+        table.processEvent(e);
+    };
 
-    canvas.on('mouse:beforedrag', function (e) {
+    function emit(e,runLocal) {
+        ws.send(JSON.stringify(e));
+        if (runLocal) table.processEvent(e);
+    }
+
+    canvas.on("object:moving",function(e) {
+        emit(EventFactory.updateObject(e.target),false);
+    });
+
+    canvas.on("mouse:beforedrag", function (e) {
         var target = canvas.findTarget(e);
         if (e.shiftKey && target.kind == "collection") {
             var group = target;
             var found = null;
             _.each(group.getObjects(),function(o) {
-                if (containsInGroupPoint(o,new fabric.Point(e.clientX,e.clientY))) {
+                if (FabricUtil.containsInGroupPoint(o,new fabric.Point(e.clientX,e.clientY))) {
                     found = o;
                 }
             });
             if (found) {
-                console.log("removing from group",found.id,found.card.name);
                 var left = found.left;
                 var top = found.top;
                 group.removeWithUpdate(found);
@@ -57,7 +76,7 @@ $(document).ready(function() {
                     canvas.remove(group);
                     canvas.add(o);
                 } else {
-                    addToCollection(canvas,group,null);
+                    //table.addToCollection(group,null);
                 }
                 found.bringToFront();
                 found.setCoords();
@@ -65,12 +84,11 @@ $(document).ready(function() {
         }
     });
 
-    canvas.on('mouse:down', function (e) {
-        console.log("mouse down called",e.target == null ? null : e.target.kind);
+    canvas.on("mouse:down", function (e) {
         if (e.target == null) panning = true;
     });
     var laste = null;
-    canvas.on('mouse:move', function (e) {
+    canvas.on("mouse:move", function (e) {
         laste = e;
         if (panning && e && e.e) {
             var delta = new fabric.Point(e.e.movementX, e.e.movementY);
@@ -94,5 +112,13 @@ $(document).ready(function() {
 
     $(window).on("keydown",function(e) {
         //console.log(e.keyCode);
+        if (e.keyCode == 32) {
+            var objects = table.canvas.getObjects();
+            if (objects.length > 1) {
+                emit(EventFactory.createCollection(objects),true);
+            } else {
+                emit(EventFactory.dismantleCollection(objects[0]),true);
+            }
+        }
     });
 });
