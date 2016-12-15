@@ -24,6 +24,20 @@ class EventFactory {
             id: o.id,
         }
     }
+    static removeFromCollection(o) {
+        return {
+            type: "removeFromCollection",
+            id: o.id,
+        }
+    }
+    static addToCollection(collection,cardOrCards,index) {
+        return {
+            type: "addToCollection",
+            id: collection.id,
+            index: index === undefined ? -1 : index,
+            cards: _.map(Array.isArray(cardOrCards) ? cardOrCards : [cardOrCards],"id"),
+        }
+    }
 }
 
 export default EventFactory;

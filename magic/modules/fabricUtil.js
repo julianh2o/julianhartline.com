@@ -3,17 +3,26 @@ class FabricUtil {
       var point = o.getCenterPoint();
       if (!o.group)
         return point;
-      var groupPoint = Util.getAbsoluteCenterPoint(o.group);
+      var groupPoint = FabricUtil.getAbsoluteCenterPoint(o.group);
       return {
         x: point.x + groupPoint.x,
         y: point.y + groupPoint.y
       };
     }
+    static findCardInCollection(collection,x,y) {
+        var found = null;
+        _.each(collection.getObjects(),function(o) {
+            if (FabricUtil.containsInGroupPoint(o,new fabric.Point(x,y))) {
+                found = o;
+            }
+        });
+        return found;
+    }
     static containsInGroupPoint(o,point) {
       if (!o.group)
         return o.containsPoint(point);
 
-      var center = Util.getAbsoluteCenterPoint(o);
+      var center = FabricUtil.getAbsoluteCenterPoint(o);
       var thisPos = {
           xStart: center.x - o.width/2,
           xEnd: center.x + o.width/2,

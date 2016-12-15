@@ -99,10 +99,15 @@ class Table extends EventEmitter {
         this.regenerateObjectsById();
     }
     onAddToCollection(e) {
-
+        var collection = this.objectsById[e.id];
+        var cards = _.map(e.cards,(id) => this.objectsById[id]);
+        collection.insertCards(cards,e.index);
     }
     onRemoveFromCollection(e) {
-
+        var object = this.objectsById[e.id];
+        var collection = object.group;
+        collection.removeCard(object);
+        this.regenerateObjectsById();
     }
     addToCollection(group,o) {
         var n = group.getObjects().length;

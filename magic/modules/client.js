@@ -29,12 +29,13 @@ $(document).ready(function() {
     var panning = false;
     canvas.on("mouse:up", function (e) {
         if (!panning) {
-            var obj = FabricUtil.objectAt(table.canvas,e.e.clientX,e.e.clientY,e.target);
-            if (obj) {
-                if (obj.kind == "card") {
-                    var group = table.createCollection([obj,e.target],"stack");
-                } else {
-                    table.addToCollection(obj,e.target);
+            var dropTarget = FabricUtil.objectAt(table.canvas,e.e.clientX,e.e.clientY,e.target);
+            var dragged = e.target;
+            if (dropTarget) {
+                if (dropTarget.type === "card") {
+                    emit(EventFactory.createCollection([dropTarget,dragged]),true);
+                } else if (dropTarget.type === "cardCollection") {
+                    emit(EventFactory.addToCollection(dropTarget,dragged),true);
                 }
             }
         }
@@ -57,30 +58,14 @@ $(document).ready(function() {
 
     canvas.on("mouse:beforedrag", function (e) {
         var target = canvas.findTarget(e);
-        if (e.shiftKey && target.kind == "collection") {
-            var group = target;
-            var found = null;
-            _.each(group.getObjects(),function(o) {
-                if (FabricUtil.containsInGroupPoint(o,new fabric.Point(e.clientX,e.clientY))) {
-                    found = o;
-                }
-            });
-            if (found) {
-                var left = found.left;
-                var top = found.top;
-                group.removeWithUpdate(found);
-                canvas.add(found);
-                if (group._objects.length == 1) {
-                    var o = group._objects[0];
-                    group._restoreObjectsState();
-                    canvas.remove(group);
-                    canvas.add(o);
-                } else {
-                    //table.addToCollection(group,null);
-                }
-                found.bringToFront();
-                found.setCoords();
-            }
+        if (e.shiftKey && target.type == "cardCollection") {
+            var collection = target;
+            var card = FabricUtil.findCardInCollection(collection,e.clientX,e.clientY);
+            if (!card) return;
+
+            emit(EventFactory.removeFromCollection(card),true);
+            card.bringToFront();
+            card.setCoords();
         }
     });
 
