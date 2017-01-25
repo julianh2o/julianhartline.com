@@ -26,22 +26,6 @@ $(document).ready(function() {
     });
     $(window).resize();
 
-    var panning = false;
-    canvas.on("mouse:up", function (e) {
-        if (!panning) {
-            var dropTarget = FabricUtil.objectAt(table.canvas,e.e.clientX,e.e.clientY,e.target);
-            var dragged = e.target;
-            if (dropTarget) {
-                if (dropTarget.type === "card") {
-                    emit(EventFactory.createCollection([dropTarget,dragged]),true);
-                } else if (dropTarget.type === "cardCollection") {
-                    emit(EventFactory.addToCollection(dropTarget,dragged),true);
-                }
-            }
-        }
-        panning = false;
-    });
- 
     ws.onmessage = function (e) {
         var e = JSON.parse(e.data);
         table.processEvent(e);
@@ -52,20 +36,43 @@ $(document).ready(function() {
         if (runLocal) table.processEvent(e);
     }
 
+    var panning = false;
+    canvas.on("mouse:up", function (e) {
+        if (!panning) {
+            var dropTarget = FabricUtil.objectAt(table.canvas,e.e.clientX,e.e.clientY,e.target);
+            var dragged = e.target;
+            if (dropTarget) {
+                emit(EventFactory.mergeIntoCollection([dropTarget,dragged]),true);
+                /*
+                if (dropTarget.type === "card") {
+                    emit(EventFactory.createCollection([dropTarget,dragged]),true);
+                } else if (dropTarget.type === "cardCollection") {
+                    emit(EventFactory.addToCollection(dropTarget,dragged),true);
+                }
+                */
+            }
+        }
+        panning = false;
+    });
+ 
     canvas.on("object:moving",function(e) {
         emit(EventFactory.updateObject(e.target),false);
     });
 
     canvas.on("mouse:beforedrag", function (e) {
         var target = canvas.findTarget(e);
-        if (e.shiftKey && target.type == "cardCollection") {
+        if (target && e.shiftKey && target.type == "cardCollection") {
+            console.log("removing card from collection!");
             var collection = target;
+            console.log("collection",collection.id);
             var card = FabricUtil.findCardInCollection(collection,e.clientX,e.clientY);
             if (!card) return;
+            console.log("card: ",card.id);
 
             emit(EventFactory.removeFromCollection(card),true);
-            card.bringToFront();
+            console.log("bubbling card to top..");
             card.setCoords();
+            card.bringToFront();
         }
     });
 
@@ -106,4 +113,81 @@ $(document).ready(function() {
             }
         }
     });
+
+    var fabricObject = null;
+
+    var cardMenu = [
+        {
+            name: "Debug Object",
+            img: "",
+            fun: function (o, jqEvent) {
+                console.log(fabricObject);
+            }
+        },
+        {
+            name: "Flip",
+            img: "",
+            fun: function (o, jqEvent) {
+                fabricObject.setFlipped();
+            }
+        },
+    ];
+
+    var boosterMenu = [
+        {
+            name: "Open Booster",
+            img: "",
+            fun: function (o, jqEvent) {
+                emit(EventFactory.openBooster(fabricObject),true);
+            }
+        },
+    ];
+
+    var defaultMenu = [
+        {
+            name: "Spawn Booster",
+            img: "",
+            fun: function (o, jqEvent) {
+                var pos = table.canvas.getPointer(jqEvent);
+                emit(EventFactory.spawnBooster(pos.x,pos.y,"KLD"),false);
+            }
+        },
+    ];
+
+    var collectionMenu = [
+        {
+            name: "Dismantle Collection",
+            img: "",
+            fun: function (o, jqEvent) {
+            }
+        },
+    ];
+
+
+    var opt = {
+        triggerOn: "contextmenu",
+    }
+
+    var menuTypeMap = {
+        null: defaultMenu,
+        "card":cardMenu,
+        "boosterPack":boosterMenu,
+        "cardCollection":collectionMenu,
+    }
+
+    var i = 0;
+    var $canvas = $(".upper-canvas");
+    $canvas.on("contextmenu", function (e) {
+        e.preventDefault();
+        fabricObject = table.canvas.findTarget(e.originalEvent);
+        var menu = menuTypeMap[fabricObject ? fabricObject.type : null];
+        $canvas.contextMenu("destroy");
+        $canvas.contextMenu(menu,opt);
+    });
+
+    $canvas.on("click",function(e) {
+        $canvas.contextMenu("close");
+    });
+
+    $canvas.contextMenu(defaultMenu,opt);
 });

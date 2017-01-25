@@ -3,6 +3,7 @@ import Util from "./util";
 import FabricUtil from "./fabricUtil";
 
 var fabric = require('fabric').fabric;
+var _ = require("lodash");
 
 fabric.Card = fabric.util.createClass(fabric.Image, {
     type: "card",
@@ -13,18 +14,34 @@ fabric.Card = fabric.util.createClass(fabric.Image, {
         this.card = card;
         this.cardId = card.id;
         this.imageUrl = card.imageUrl;
+        this.flipped = false;
+        this.cardElement = img;
+
+        fabric.util.loadImage("http://localhost:3000/cardback.jpg", function(img) {
+            this.backElement = img;
+        }, this, true);
 
         FabricUtil.hideRotationAndScalingControls(this);
     },
     toObject: function(propertiesToInclude) {
         return this.callSuper("toObject",["cardId","id","imageUrl"].concat(propertiesToInclude));
     },
+    setFlipped(flipped) {
+        if (flipped === undefined) flipped = !this.flipped;
+
+        this.flipped = flipped;
+        this.setElement(flipped ? this.backElement : this.cardElement, function() {
+            this.canvas.renderAll();
+        }.bind(this), {width: this.width, height: this.height});
+    }
 });
 
 //Static
 fabric.Card.fromMetadata = function(card, callback, options) {
+    var fabricId = card.fabricId;
+    delete card.fabricId;
     fabric.util.loadImage(card.imageUrl, function(img) {
-        callback && callback(new fabric.Card(card,img,options));
+        callback && callback(new fabric.Card(card,img,_.extend({},options,{id: fabricId})));
     }, null, null);
 }
 

@@ -3,6 +3,9 @@ import FabricUtil from "./fabricUtil";
 import CardService from "./cardService";
 import Card from "./Card";
 import CardCollection from "./CardCollection";
+import BoosterPack from "./BoosterPack";
+import EventFactory from "./EventFactory";
+import constants from "./constants";
 
 var EventEmitter = require("events").EventEmitter;
 var fabric = require('fabric').fabric;
@@ -10,38 +13,12 @@ var _ = require("lodash");
 var fetch = require('node-fetch');
 
 class Table extends EventEmitter {
-    constructor(canvas) {
+    constructor(canvas,emit) {
         super();
+        this.emit = emit;
         this.canvas = canvas;
         canvas.selection = false;
         this.objectsById = {};
-    }
-    generateBooster(code) {
-        var order = {};
-        CardService.generateBooster(code).then(function(cards) {
-            var promiseList = _.map(cards,function(card,index) {
-                return this.spawnCard(card).then(function(o) {
-                    o.set({left: 10, top: index*35});
-                    o.setCoords();
-                    order[o.id] = index;
-                    return o;
-                }.bind(this));
-            }.bind(this));
-            var promise = Promise.all(promiseList);
-            promise.then(function(o) {
-                this.restack(order);
-                //this.createCollection(o,"collection");
-            }.bind(this));
-        }.bind(this));
-    }
-    spawnCard(card) {
-        return new Promise(function(resolve,reject) {
-            fabric.Card.fromMetadata(card, function(o) {
-                this.canvas.add(o);
-                this.regenerateObjectsById();
-                resolve(o);
-            }.bind(this));
-        }.bind(this));
     }
     loadFromJSON(data) {
         this.canvas.loadFromJSON(data, function () {
@@ -59,7 +36,6 @@ class Table extends EventEmitter {
         _.each(arr,function(v,index) {
             objById[v[0]].moveTo(index);
         });
-
     }
     regenerateObjectsById() {
         this.objectsById = _.reduce(this.canvas.getObjects(),function(acc,o) { acc[o.id] = o; return acc },{});
@@ -68,6 +44,18 @@ class Table extends EventEmitter {
         var type = e.type;
         var fname = "on"+Util.capitalize(e.type);
         this[fname](e);
+    }
+    onObjectsCreated(e) {
+        fabric.util.enlivenObjects(e.objects, function (enlivenedObjects) {
+            _.each(enlivenedObjects,o => this.canvas.add(o));
+            this.regenerateObjectsById();
+        }.bind(this));
+    }
+    onOpenBooster(e) {
+        var o = this.objectsById[e.id];
+        o.open(function(collection) {
+            this.regenerateObjectsById();
+        }.bind(this));
     }
     onUpdate(e) {
         var id = e.id;
@@ -81,15 +69,37 @@ class Table extends EventEmitter {
         delete e.type;
         _.extend(o,e);
         o.setCoords();
+        o.bringToFront();
+        this.canvas.renderAll();
+    }
+    onSpawnBooster(e) {
+        console.log("spawning booster",e);
+        var set = e.set;
+        fabric.BoosterPack.forSet(e.set,{x: e.x, y: e.y},function(booster) {
+            this.canvas.add(booster);
+            this.regenerateObjectsById();
+            this.emit(EventFactory.objectsCreated([booster]));
+        }.bind(this));
+    }
+    onMergeIntoCollection(e) {
+        var objects = _.map(e.objects,(id) => this.objectsById[id]);
+        delete e.type;
+        delete e.objects;
+        var collection = new fabric.CardCollection(objects,e);
+        console.log("merged into collection",collection.id);
+        this.canvas.add(collection);
+        this.regenerateObjectsById();
         this.canvas.renderAll();
     }
     onCreateCollection(e) {
         var cards = _.map(e.cards,(id) => this.objectsById[id]);
         delete e.type;
+        delete e.cards;
         var collection = new fabric.CardCollection(cards,e);
         console.log("created collection",collection.id);
         this.canvas.add(collection);
         this.regenerateObjectsById();
+        this.canvas.renderAll();
     }
     onDismantleCollection(e) {
         var collection = this.objectsById[e.id];
@@ -97,46 +107,22 @@ class Table extends EventEmitter {
         collection.dismantle();
         console.log("dismantle collection",e.id);
         this.regenerateObjectsById();
+        this.canvas.renderAll();
     }
     onAddToCollection(e) {
         var collection = this.objectsById[e.id];
+        console.log("adding to collection",e.cards);
         var cards = _.map(e.cards,(id) => this.objectsById[id]);
         collection.insertCards(cards,e.index);
+        this.canvas.renderAll();
     }
     onRemoveFromCollection(e) {
-        var object = this.objectsById[e.id];
-        var collection = object.group;
-        collection.removeCard(object);
+        var collection = this.objectsById[e.collectionId];
+        var card = _.find(collection.getObjects(),{id:e.id});
+        console.log("remove card being called");
+        collection.removeCard(card);
         this.regenerateObjectsById();
-    }
-    addToCollection(group,o) {
-        var n = group.getObjects().length;
-        var groupKind = group.kind;
-        var groupId = group.id;
-
-        var objects = group._objects;
-        group._restoreObjectsState();
-        canvas.remove(group);
-        _.each(objects,function(o) {
-            this.canvas.add(o);
-        }.bind(this));
-
-        if (o != null) {
-            if (o.kind == "collection") {
-                var objects = o._objects;
-                o._restoreObjectsState();
-                this.canvas.remove(o);
-                _.each(objects,function(o) {
-                    this.canvas.add(o);
-                    objects.push(o);
-                }.bind(this));
-            } else {
-                objects.push(o);
-            }
-        }
-
-        var group = this.createCollection(canvas,objects,groupKind);
-        group.id = groupId;
+        this.canvas.renderAll();
     }
 }
 

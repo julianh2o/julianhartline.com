@@ -16,23 +16,18 @@ fabric.CardCollection = fabric.util.createClass(fabric.Group, {
 
         var objects = this.dismantleExistingCollections(objects);
 
+        options.collectionType = options.collectionType || "stack";
         options.top = options.top || objects[0].top;
         options.left = options.left || objects[0].left;
         options.originX = options.originX || "left";
         options.originY = options.originY || "top";
 
-        this.callSuper("initialize", objects, options);
+        this.collectionType = options.collectionType;
+
         _.each(objects,function(o) {
             o.remove();
         }.bind(this));
-
-        /*
-        console.log("after:",this.top,this.left,this.originX,this.originY);
-        console.log("center: ",this.getCenterPoint());
-        _.each(objects,function(o) {
-            console.log("obj: ",o.id,o.left,o.top,o.originalLeft, o.originalTop, o.width, o.height);
-        });
-        */
+        this.callSuper("initialize", objects, options);
 
         this.repositionCards();
     },
@@ -52,15 +47,18 @@ fabric.CardCollection = fabric.util.createClass(fabric.Group, {
         return objects;
     },
     removeCard:function(card) {
+        if (this.getObjects().length == 2) return this.dismantle();
+
         this.removeWithUpdate(card);
+        this.repositionCards();
         this.canvas.add(card);
     },
     insertCards:function(cardOrCards,index) {
         var cards = Array.isArray(cardOrCards) ? cardOrCards : [cardOrCards];
         if (index < 0) index = this.getObjects().length + index + 1;
         _.each(cards,function(card) {
-            this.insertWithoutUpdate(card,index);
             card.remove();
+            this.insertWithoutUpdate(card,index);
         }.bind(this));
         this.repositionCards();
     },
@@ -78,11 +76,8 @@ fabric.CardCollection = fabric.util.createClass(fabric.Group, {
         }.bind(this));
         this.setCoords();
     },
-    _render : function(ctx) {
-        this.callSuper("_render", ctx);
-    },
     toObject: function(propertiesToInclude) {
-        return this.callSuper("toObject",["id"].concat(propertiesToInclude));
+        return this.callSuper("toObject",["id","collectionType","boosterSet"].concat(propertiesToInclude));
     },
     insertWithoutUpdate: function(object,index) { //copied mostly from fabric js group code
         if (object) {
