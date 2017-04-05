@@ -327,7 +327,7 @@
             }
 
             if (includeAd) {
-                message += "\n\n#### This message was sent with [http://bit.ly/1n396JN][Fetlife: Natural Mail Enhancement] by [https://fetlife.com/users/1436573][@julianh2o]."
+                message += "\n\n#### This message was sent with [http://bit.ly/2jSx3FS][Fetlife: Natural Mail Enhancement] by [https://fetlife.com/users/1436573][@julianh2o]."
             }
             
             var successes = 0;
