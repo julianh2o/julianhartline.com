@@ -1,10 +1,26 @@
 name: julianhartline.com
+title: Julian Hartline
 owner: Julian Hartline
 email: julianh2o@gmail.com
+url: https://julianhartline.com
 titletagline: Code, circuits, and commentary
 tagline: Programmings, tinkerings, and musings to stave off idleness.
 github: julianh2o
-exclude: [tasks, misc_unused]
-markdown: redcarpet
-highlighter: pygments
+
+markdown: kramdown
+kramdown:
+  input: GFM
+highlighter: rouge
 permalink: none
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - tasks
+  - misc_unused
+  - README.md
+  - .project
+  - .settings
+  - magic/node_modules
