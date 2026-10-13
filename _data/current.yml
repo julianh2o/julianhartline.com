@@ -1,0 +1,35 @@
+# Large cards on the homepage. `image` and `link` are optional;
+# cards without an image get a generated gradient panel. `credit` is a
+# small attribution line shown under the description. `image_fit: contain`
+# shows the whole image on a white panel instead of cropping (for logos).
+- title: LLM-assisted Scientific Discovery
+  status: Ongoing
+  image: /assets/current/copepods.jpg
+  credit: >-
+    Image: Neocalanus flemingeri females, Roncalli et al. 2018,
+    <a href="https://doi.org/10.1038/s41598-018-30873-0">Scientific Reports</a>
+    (CC BY 4.0), panel labels removed.
+  description: >-
+    Modern research produces more data than anyone can comb through by hand.
+    Language models can quickly generate the queries and charts needed to
+    explore it. This project is building a standard pipeline that lets them
+    take on large scientific datasets, with researchers in the loop to guide
+    the work and check every result.
+
+- title: The Bawdy Shop
+  status: Founded 2025
+  image: /assets/current/bawdy-shop.svg
+  image_fit: contain
+  link: /bawdy-shop/
+  description: >-
+    A community and event space hosting queer-centered events and workshops
+    aimed at fostering community and safety.
+
+- title: Podbase
+  status: Live
+  image: /assets/projects/podbase/thumb.png
+  link: https://podbase.net
+  description: >-
+    An image database built for annotating and browsing scientific images.
+    Written in Java with the Play framework and developed for the Lenz Lab
+    at the University of Hawaii at Manoa.

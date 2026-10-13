@@ -1,0 +1,26 @@
+---
+layout: default
+---
+<article class="project">
+  <a class="back" href="/portfolio/">&larr; Portfolio</a>
+  <p class="eyebrow">{{ page.decade }}</p>
+  <h1>{{ page.title }}</h1>
+
+  <div class="prose">
+    {{ content }}
+  </div>
+
+  {% if page.link %}
+    <p><a class="button" href="{{ page.link }}">Visit {{ page.link | remove: "https://" | remove: "http://" }} &rarr;</a></p>
+  {% endif %}
+
+  {% assign dir = "/assets/projects/" | append: page.slug | append: "/" %}
+  {% assign shots = site.static_files | where_exp: "f", "f.path contains dir" | where_exp: "f", "f.basename != 'thumb'" | sort: "basename" %}
+  {% if shots.size > 0 %}
+    <div class="gallery">
+      {% for shot in shots %}
+        <a href="{{ shot.path }}"><img src="{{ shot.path }}" alt="{{ page.title }} screenshot {{ forloop.index }}" loading="lazy"></a>
+      {% endfor %}
+    </div>
+  {% endif %}
+</article>

@@ -1,17 +1,29 @@
-name: julianhartline.com
 title: Julian Hartline
-owner: Julian Hartline
-email: julianh2o@gmail.com
+description: Code, circuits, and commentary.
 url: https://julianhartline.com
-titletagline: Code, circuits, and commentary
-tagline: Programmings, tinkerings, and musings to stave off idleness.
-github: julianh2o
+author: Julian Hartline
+email: julianh2o@gmail.com
+
+links:
+  - name: GitHub
+    url: https://github.com/julianh2o
+  - name: LinkedIn
+    url: https://www.linkedin.com/in/julianhartline/
+  - name: Resume
+    url: /resources/julianhartline.pdf
 
 markdown: kramdown
 kramdown:
   input: GFM
 highlighter: rouge
-permalink: none
+
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name.html
+
+# Portfolio sections, newest first
+decades: ["2010s", "2000s"]
 
 plugins:
   - jekyll-seo-tag
@@ -19,8 +31,4 @@ plugins:
 
 exclude:
   - tasks
-  - misc_unused
   - README.md
-  - .project
-  - .settings
-  - magic/node_modules

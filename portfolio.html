@@ -1,0 +1,25 @@
+---
+layout: default
+title: Portfolio
+permalink: /portfolio/
+---
+<section id="portfolio" class="portfolio">
+  <h1>Portfolio</h1>
+  {% for decade in site.decades %}
+    {% assign projects = site.projects | where: "decade", decade | sort: "title" %}
+    {% if projects.size > 0 %}
+      <h3 class="decade">{{ decade }}</h3>
+      <ul class="cards">
+        {% for project in projects %}
+          <li class="card">
+            <a href="{{ project.url }}">
+              <img src="{{ project.thumbnail }}" alt="" loading="lazy">
+              <span class="card-title">{{ project.title }}</span>
+              <span class="card-summary">{{ project.summary }}</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endfor %}
+</section>
