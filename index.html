@@ -35,6 +35,18 @@ layout: default
   </ul>
 </section>
 
+<section class="trinkets">
+  <h2>Trinkets</h2>
+  <ul class="trinket-list">
+    {% for trinket in site.data.trinkets %}
+      <li><a href="{{ trinket.link }}">
+        <span class="trinket-title">{{ trinket.title }}</span>
+        <span class="trinket-desc">{{ trinket.description }}</span>
+      </a></li>
+    {% endfor %}
+  </ul>
+</section>
+
 <section class="more">
   <p>Want to see more? Check out my <a href="https://github.com/julianh2o">GitHub</a> or <a href="/portfolio/">portfolio</a>.</p>
 </section>

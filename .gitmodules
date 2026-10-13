@@ -1,0 +1,6 @@
+[submodule "toys"]
+	path = toys
+	url = https://github.com/julianh2o/toys
+[submodule "drawmon"]
+	path = drawmon
+	url = https://github.com/julianh2o/drawmon

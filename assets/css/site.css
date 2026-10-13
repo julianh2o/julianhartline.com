@@ -132,6 +132,24 @@ main, .site-header, .site-footer {
 .feature-credit a { color: inherit; text-decoration: underline; }
 .feature-link { display: inline-block; color: var(--magenta); margin-top: 16px; }
 
+/* Trinkets: small toys */
+.trinkets { padding-bottom: 56px; }
+.trinkets > h2 { border-top: 1px solid var(--border); padding-top: 40px; margin-bottom: 24px; }
+.trinket-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.trinket-list a {
+  display: block;
+  height: 100%;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  transition: border-color 0.15s;
+}
+.trinket-list a:hover { text-decoration: none; border-color: var(--teal); }
+.trinket-title { display: block; font-size: 1.15rem; font-weight: 600; margin-bottom: 4px; }
+.trinket-desc { display: block; color: var(--muted); font-size: 0.95rem; }
+
 /* Portfolio */
 .portfolio { padding: 32px 0 40px; }
 .decade {
@@ -233,6 +251,7 @@ main, .site-header, .site-footer {
   .intro p { text-shadow: 0 1px 12px var(--bg); }
   .feature-card > a, .feature-card-inner { grid-template-columns: 1fr; }
   .feature-media { aspect-ratio: 16 / 9; }
+  .trinket-list { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 520px) {
@@ -244,6 +263,6 @@ main, .site-header, .site-footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card a, .gallery a, .feature-card > a { transition: none; }
+  .card a, .gallery a, .feature-card > a, .trinket-list a { transition: none; }
   .card a:hover { transform: none; }
 }

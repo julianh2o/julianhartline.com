@@ -32,3 +32,5 @@ plugins:
 exclude:
   - tasks
   - README.md
+  - deploy.sh
+  - toys
