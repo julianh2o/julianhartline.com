@@ -3,7 +3,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-REMOTE="julianh2o@julianhartline.com"
+REMOTE="julianh2o@iad1-shared-b8-48.dreamhost.com"
 REMOTE_DIR="~/julianhartline.com/"
 
 # Submodules: drawmon is static and copied by Jekyll; toys need a webpack build
